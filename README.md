@@ -10,9 +10,6 @@ Marque esse projeto com uma estrela 🌟 e acesse o nosso [grupo oficial no What
 - Este projeto foi criado usando Node.js v18.17.0
 - O ideal é que você use o projeto em ambiente Unix (Linux). Se você estiver no Windows, é recomendado que use o [Windows Subsystem Linux](https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10) pois nas aulas são mostrados comandos Linux que possam não existir no Windows.
 
-## Importante
-- Todo dia às 18hrs estou subindo o código das aulas do dia corrente em [classes](./classes). Se você for iniciar o projeto, remova a pasta [classes](./classes) para iniciar do zero!
-
 ## Running
 - Execute `npm ci` na pasta que contém o arquivo `package.json` para restaurar os pacotes
 - Execute `npm start` e em seguida vá para o seu navegador em [http://localhost:3000](http://localhost:3000) para visualizar a página acima
