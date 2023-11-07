@@ -1,5 +1,5 @@
 import { Logger } from "../utils/logger.js";
-import { createFile, DataStream } from "../deps/mp4box.0.5.2.js";
+import { createFile, DataStream } from "../lib/mp4box.0.5.2.js";
 
 export default class MP4Demuxer {
     #onConfig;

@@ -5,7 +5,7 @@
 <img width=100% src="./demo.gif">
 <br/>
 
-### Pre-requesites
+### Prerequisites
 <hr />
 
 - Node.js v18.17.0

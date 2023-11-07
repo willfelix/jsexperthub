@@ -9,7 +9,7 @@ export default class VideoProcessor {
     /**
      * @param {object} options
      * @param {import('./mp4-demuxer.js').default} options.mp4Demuxer
-     * @param {import('./../deps/webm-writer2.js').default} options.webMWriter
+     * @param {import('./../lib/webm-writer2.js').default} options.webMWriter
      * @param {import('./service.js').default} options.service
      */
     constructor({ mp4Demuxer, webMWriter, service }) {
@@ -173,6 +173,8 @@ export default class VideoProcessor {
     }
 
     transformIntoWebM() {
+        const readable = this.#webMWriter.getStream();
+
         const writable = new WritableStream({
             write: (chunk) => {
                 this.#webMWriter.addFrame(chunk);
@@ -180,7 +182,7 @@ export default class VideoProcessor {
         });
 
         return {
-            readable: this.#webMWriter.getStream(),
+            readable,
             writable
         };
     }
@@ -194,16 +196,19 @@ export default class VideoProcessor {
             segments++;
             const blob = new Blob(chunks, { type: "video/webm" });
             const key = `${filename}-${resolution}-${segments}.${type}`;
-
-            await this.#service.uploadFile({
-                buffer: blob,
-                filename: key
-            });
-
             console.log(`uploading ${key} with size: ${blob.size}`);
 
-            chunks.length = 0;
-            byteCount = 0;
+            try {
+                await this.#service.uploadFile({
+                    buffer: blob,
+                    filename: key
+                });
+            } catch (error) {
+                console.error("error to upload file", error);
+            } finally {
+                chunks.length = 0;
+                byteCount = 0;
+            }
         };
 
         return new WritableStream({

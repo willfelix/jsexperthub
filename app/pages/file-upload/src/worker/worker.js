@@ -4,7 +4,7 @@ import Service from "./service.js";
 import MP4Demuxer from "./mp4-demuxer.js";
 import CanvasRenderer from "./canvasRenderer.js";
 import VideoProcessor from "./video-processor.js";
-import WebMWriter from "./../deps/webm-writer2.js";
+import WebMWriter from "./../lib/webm-writer2.js";
 
 const qvgaConstraints = {
     width: 320,
@@ -22,7 +22,7 @@ const hdConstraints = {
 };
 
 const encoderConfig = {
-    ...qvgaConstraints,
+    ...hdConstraints,
     bitrate: 10e6,
 
     // WebM
